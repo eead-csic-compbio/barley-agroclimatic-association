@@ -1,5 +1,3 @@
-# Genome Environment Association with Spanish barley
-
 This repository contains data files and source code used in a project in which we looked for 
 genome-wide association with high-resolution climate data of the Iberian Peninsula with the 
 goal of discovering selection footprints in the genomes of barley landraces from the
