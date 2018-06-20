@@ -17,8 +17,10 @@ how maps and SNPs plots were produced:
 | filename | summary | 
 |:---------|:--------:|
 |[HOWTOclimate.md](./HOWTOclimate.md)| Preparation and selection of climate variables |
-|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) |
-|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) |
+
+
+<!--|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) | -->
+<!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
 An example of the maps that were produced is shown below:
 
