@@ -3,6 +3,8 @@ genome-wide association with high-resolution climate data of the Iberian Peninsu
 goal of discovering selection footprints in the genomes of barley landraces from the
 [Spanish Barley Core Collection](http://www.eead.csic.es/barley/index.php?lng=1).
 
+URL: [eead-csic-compbio.github.io/barley-agroclimatic-association](https://eead-csic-compbio.github.io/barley-agroclimatic-association)
+
 **Authors**
 
 B Contreras-Moreira (1,2), R Serrano-Notivoli (1), NE Mohamed (1), CP Cantalapiedra (1), S Begueria (1), AM Casas (1), E Igartua (1)
