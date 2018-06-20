@@ -13,20 +13,19 @@ B Contreras-Moreira (1,2), R Serrano-Notivoli (1), NE Mohamed (1), CP Cantalapie
 2. Fundacion ARAID, Zaragoza, Spain
 
 
-There are three main R markdown documents describing the selection of agroclimatic variables, several association analyses and 
-how maps and SNPs plots were produced:
+There are several R markdown documents describing the selection of agroclimatic variables, 
+diverse association analyses and how maps and SNP plots were produced:
 
 | filename | summary | 
 |:---------|:--------:|
-|[HOWTOclimate.md](./HOWTOclimate.md)| Preparation and selection of climate variables |
+|[HOWTOclimate](./HOWTOclimate.html)| Preparation and selection of climate variables |
 
 
 <!--|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) | -->
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
-An example of the maps that were produced is shown below:
-
-![**Legend.** Sample map of SNPs and agroclimatic variable](./maps/plots/BOPA2_12_10979_verna_30d.png)
+<!--An example of the maps that were produced is shown below:
+![**Legend.** Sample map of SNPs and agroclimatic variable](./maps/plots/BOPA2_12_10979_verna_30d.png) -->
 
 ## Dependencies
 
