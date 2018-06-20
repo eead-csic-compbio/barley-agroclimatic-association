@@ -45,5 +45,4 @@ these protocols require a few R packages which must be installed to reproduce th
 [qqman](https://cran.r-project.org/package=qqman)
 
 In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
-<!-- dplyr,grid,maptools,raster,ape,cluster,corrplot,dendextend,devtools,ggplot2,gplots,qqman,knitr -->
-Peninsula -->
+
