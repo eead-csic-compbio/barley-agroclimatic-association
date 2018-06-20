@@ -1,37 +1,49 @@
-## Welcome to GitHub Pages
+# Genome Environment Association with Spanish barley
 
-You can use the [editor on GitHub](https://github.com/eead-csic-compbio/barley-agroclimatic-association/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This repository contains data files and source code used in a project in which we looked for 
+genome-wide association with high-resolution climate data of the Iberian Peninsula with the 
+goal of discovering selection footprints in the genomes of barley landraces from the
+[Spanish Barley Core Collection](http://www.eead.csic.es/barley/index.php?lng=1).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Authors**
 
-### Markdown
+B Contreras-Moreira (1,2), R Serrano-Notivoli (1), NE Mohamed (1), CP Cantalapiedra (1), S Begueria (1), AM Casas (1), E Igartua (1)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1. Estacion Experimental de Aula Dei-CSIC, Zaragoza, Spain
+2. Fundacion ARAID, Zaragoza, Spain
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+There are three main R markdown documents describing the selection of agroclimatic variables, several association analyses and 
+how maps and SNPs plots were produced:
 
-- Bulleted
-- List
+| filename | summary | 
+|:---------|:--------:|
+|[HOWTOclimate.md](./HOWTOclimate.md)| Preparation and selection of climate variables |
+|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) |
+|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) |
 
-1. Numbered
-2. List
+An example of the maps that were produced is shown below:
 
-**Bold** and _Italic_ and `Code` text
+![**Legend.** Sample map of SNPs and agroclimatic variable](./maps/plots/BOPA2_12_10979_verna_30d.png)
 
-[Link](url) and ![Image](src)
-```
+## Dependencies
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Besides [bayenv2](https://gcbias.org/bayenv) and a few Perl scripts, included in this repository,
+these protocols require a few R packages which must be installed to reproduce the results:
 
-### Jekyll Themes
+[dplyr](https://cran.r-project.org/package=dplyr),
+[grid](https://cran.r-project.org/package=grid),
+[maptools](https://cran.r-project.org/package=maptools),
+[raster](https://cran.r-project.org/package=raster),
+[ape](https://cran.r-project.org/package=ape),
+[cluster](https://cran.r-project.org/package=cluster),
+[corrplot](https://cran.r-project.org/package=corrplot),
+[dendextend](https://cran.r-project.org/package=dendextend),
+[devtools](https://cran.r-project.org/package=devtools),
+[ggplot2](https://cran.r-project.org/package=ggplot2),
+[gplots](https://cran.r-project.org/package=gplots), 
+[qqman](https://cran.r-project.org/package=qqman)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/eead-csic-compbio/barley-agroclimatic-association/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
+<!-- dplyr,grid,maptools,raster,ape,cluster,corrplot,dendextend,devtools,ggplot2,gplots,qqman,knitr -->
+Peninsula -->
