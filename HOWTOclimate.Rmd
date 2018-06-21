@@ -13,6 +13,7 @@ output:
     toc: yes
     toc_depth: 4
   word_document: default
+date: '`r format(Sys.Date(),"%d/%b/%Y")`'
 ---
 
 ```{r knitr setup, include=FALSE,  eval=TRUE, echo=FALSE, warning=FALSE}
