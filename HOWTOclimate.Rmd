@@ -190,17 +190,19 @@ png("plots/climate_correlations.png",height=2500,width=2500)
 corrplot(cor(climdata[w,2:ncol(climdata)]), order="hclust",
          hclust.method="ward.D2", tl.cex=1.5)
 dev.off()
-
-#library(corrgram)
-#png("plots/climate_correlogram.png",height=5000,width=5000)
-#  par(mar=c(3,1,1,7))
-#  corrgram(climdata[w,-1], main='Correlogram (PCA ordered)',
-#    lower.panel=panel.pts,	upper.panel=panel.conf,
-#    diag.panel=panel.density, order=TRUE,
-#    cex.labels=1, font.labels=2)
-##    col.regions=colorRampPalette(c("darkgoldenrod4", "burlywood1", "darkkhaki", "darkgreen")))
-#dev.off()
 ```
+<!-- 
+library(corrgram)
+png("plots/climate_correlogram.png",height=5000,width=5000)
+  par(mar=c(3,1,1,7))
+  corrgram(climdata[w,-1], main='Correlogram (PCA ordered)',
+    lower.panel=panel.pts,	upper.panel=panel.conf,
+    diag.panel=panel.density, order=TRUE,
+    cex.labels=1, font.labels=2)
+    col.regions=colorRampPalette(c("darkgoldenrod4", "burlywood1", "darkkhaki", "darkgreen")))
+dev.off()
+-->
+
 ![**Legend.** Pearson correlations between climate variables.](plots/climate_correlations.png)
 
 <!-- ![**Legend.** Correlogram between climate variables.](plots/climate_correlogram.png)-->
@@ -396,7 +398,7 @@ kable((data %*% eigenvec)[1:3,1:3], digits=3)
 
 In order to use [bayenv2](https://gcbias.org/bayenv) and 
 [LFMM](http://membres-timc.imag.fr/Olivier.Francois/lfmm) 
-we need to build **ENVIRONFILE** file where each line is an environmental variable across populations, with tab-separated values and standardized after subtracting the mean and dividing by the standard deviation across populations. The variables should be listed in the same population order as they appear in the allele count files. 
+we need to build **ENVIRONFILE** files where each line is an environmental variable across populations, with tab-separated values and standardized after subtracting the mean and dividing by the standard deviation across populations. The variables should be listed in the same population order as they appear in the allele count files. 
 
 After the previous analyses a few raw and linearly-combined variables were short-listed. However, some of the raw variables are two-month summaries, which we still need to compute:
 
@@ -508,11 +510,6 @@ After the previous analyses a few raw and linearly-combined variables were short
     'bal_aut','bal_win','bal_jun','bal_mar_apr_may' 
     )
   
-  # now add PC vars (left out 09032017)
-  #nrclimdata = merge( nrclimdata,
-  #                    data.frame(id=climdata[w,1],pca$x[,1:5]),
-  #                    by="id")
-  
   # standardize columns including UTC coordinates
   normdummydata = scale(alldummydata[,2:ncol(alldummydata)])
   normdata = scale(nrclimdata[,2:ncol(nrclimdata)])
@@ -538,8 +535,11 @@ After the previous analyses a few raw and linearly-combined variables were short
 
 Three files are generated: [*SBCC_order.txt*](./SBCC_order.txt),  [*SBCC_environfile_order.txt*](./SBCC_environfile_order.txt) and [*SBCC_environfile.tsv*](./SBCC_environfile.tsv)
 
-We shall store grids of the selected 21 variables over Spain into a single R
-object, which we will use later for representation purposes.
+
+# Saving climatologies on grids
+
+We shall store grids of the selected 21 variables over the relevant map (Spain in this work) 
+into a single R object, which we can use later for representation purposes.
 These are 5x5 km rasters (grids), stored in a single RasterBrick.
 
 ```{r createClimatologiesFile}
@@ -548,6 +548,8 @@ if (!file.exists('./maps/climatologies_5km.RData')) {
   library(maptools)
   library(raster)
 
+  # read previously computed individual raster asc files
+  # these are not provided in GitHub, only the .RData file is given
   clima <- raster(read.asciigrid('./maps/altitude.asc.gz'))
   lat <- lon <- clima
   xy <- coordinates(clima)
@@ -690,20 +692,18 @@ if (!file.exists('./maps/climatologies_5km.RData')) {
 }
 ```
 
-This generates the following file:
-[*./maps/climatologies.RData*](./maps/climatologies_5km.RData).
+This generates file *./maps/climatologies_5km.RData*
 
-
-We can also calculate maps of the first six components arising from the former
-PCA.
+We can also calculate grids of the first six components of the PCA above.
 
 ```{r createPCAmaps, fig.height=12, fig.width=12}
 if (!file.exists('./maps/climatologies_5km_pca.RData')) {
   
   # read the scaling and PCA matrices
   scal <- read.table('./raw/barley_climate_scaling.tsv')
-  eigenvec <- as.matrix(read.table('./raw/barley_climate_pca_eigenvectors.tsv',
-                                   header=TRUE))
+  eigenvec <- as.matrix(
+                read.table('./raw/barley_climate_pca_eigenvectors.tsv',
+                             header=TRUE))
 
   # load the maps of all the (104) variables in the PCA
   nam <- rownames(scal)
@@ -727,10 +727,9 @@ if (!file.exists('./maps/climatologies_5km_pca.RData')) {
   plot(pcaclima)
 
   # center and scale climate data
-  kk <- sweep(sweep(as.data.frame(pcaclima), 2, scal[,'center'], '-'),
+  tmpdata <- sweep(sweep(as.data.frame(pcaclima), 2, scal[,'center'], '-'),
                 2, scal[,'scale'], '/')
-  pcaclima <- setValues(pcaclima, as.matrix(kk))
-  #plot(pcaclima)
+  pcaclima <- setValues(pcaclima, as.matrix(tmpdata))
 
   # multiply by eigenvector matrix
   pcaclima <- setValues(pcaclima, as.matrix(pcaclima) %*% eigenvec)
@@ -741,9 +740,7 @@ if (!file.exists('./maps/climatologies_5km_pca.RData')) {
 }
 ```
 
-The results are stored on file
-[*./maps/pcaMaps.RData*](./maps/pcaMaps.RData).
-
+The results are stored on file *./maps/climatologies_5km_pca.RData*
 
 
 -----
@@ -751,16 +748,14 @@ The results are stored on file
 # Mapping
 
 `snpmap` is a function to jointly map a SNP and a climatology. Note that it
-requires some extra packages to be loaded. It can be loaded from file
-[*./mapping.R*](./mapping.R), which requires package ggplot2:
-
-```{r mappingFunction, warning=FALSE}
-source('./mapping.R')
-```
-
-Examples of using the function. First of all, load and format the data required.
+requires some extra packages to be loaded. It can be loaded from local file
+[*./mapping.R*](./mapping.R), which requires package **ggplot2**. 
+Below there are some examples.
+We start by loading the grid data, 
 
 ```{r mappingExampleLoadData}
+source('./mapping.R')
+
 # load full SNP table
 snps <- read.table('./raw/9920_SNPs_SBCC_50K.tsv', header=TRUE, sep='\t')
 snps <- t(snps)
@@ -787,8 +782,8 @@ load('./maps/climatologies_5km_pca.RData')
 load('./maps/Spain_border.RData')
 ```
 
-To produce a map showing the geographical distribution of the samples, with
-no extra information:
+To produce a map showing the geographical distribution of the samples, 
+with no extra information:
 
 ```{r mappingExampleSnpOnly2}
 snpmap(snps, border=esp, size=3)
@@ -803,10 +798,11 @@ snpmap(snps, '3255833|F|0', border=esp, size=3)
 To produce a map of one climatic variable, with no border:
 
 ```{r mappingExampleClimatologyOnly}
+names(clima)
 snpmap(clim=clima, climname='pfrost')
 ```
 
-To produce a complete map showing the distribution of one snip on top of a
+To produce a complete map showing the distribution of one SNP on top of a
 climatology, with the border:
 
 ```{r mappingExampleSnipAndClimatology}
@@ -821,13 +817,13 @@ snpmap(snps, 'BOPA2_12_10979', pcaclima, 'PC1', esp, size=3)
 And on a dummy variable:
 
 ```{r mappingExampleSnipAndPCADum}
-snpmap(snps, 'BOPA2_12_10979', clima, 'dummy_02', esp, size=3)
+snpmap(snps, 'BOPA2_12_10979', clima, 'dummy_01', esp, size=3)
 ```
 
 
 The function `snpmap` returns a ggplot object. This object can be stored, and
 then modified using standard `ggplot2` functions, for instance to override
-the default plotting options. Note that this may cast a warning:
+the default plotting options. Note that this may issue a warning:
 
 ```{r mappingExampleModifyMap}
 g <- snpmap(snps, 'BOPA2_12_30894', clima, 'pfrost', esp, size=3)
