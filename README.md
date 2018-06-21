@@ -19,6 +19,7 @@ diverse association analyses and how maps and SNP plots were produced:
 | filename | summary | 
 |:---------|:--------:|
 |[HOWTOclimate](./HOWTOclimate.html)| Preparation and selection of climate variables |
+|[HOWTOstructure](./HOWTOstructure.html)| Analysis of population structure of Spanish barleys |
 
 
 <!--|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) | -->
