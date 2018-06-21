@@ -1,0 +1,189 @@
+---
+title: "Redundancy Analysis (RDA)"
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 4
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 4
+  word_document: default
+date: '`r format(Sys.Date(),"%d/%b/%Y")`'
+---
+
+```{r knitr setup, include=FALSE,  eval=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(eval=TRUE, cache=FALSE, message=FALSE, warning=FALSE, 
+                      comment = "", results="markup")
+```
+
+This file explains the procedure followed by Ernesto Igartua to perform redundancy analysis on genetic features of the genotypes (probability of belonging to each one of the four germplasm groups), explained by geographic and agro-climatic features of the locations of collection of the genotypes. This uses library **vegan**. 
+
+
+```{r}
+library(vegan)
+```
+
+Input of environmental, geographic, genetic data
+```{r data input}
+
+#Input data, (Q matrix, all geographic and agro-climatic variables for all accessions)
+SBCC <- read.table("RDA/RDA_complete.tsv", header = TRUE)
+
+#Probabilities derived from structure, 4 populations or germplasm groups
+Cluster <- SBCC[,c("Q1","Q2","Q3","Q4")]
+
+#Dummy variables
+Dummies <- SBCC[,6:17]
+
+#All explanatory variables, environmental, geographic, dummies
+EnvGeoDum<-SBCC[,6:ncol(SBCC)]
+
+#Just geographic variables
+Geo <- SBCC[,c("altitude","utmx","utmy")]
+
+#Just environmental variables, all, non-standardized
+Env <- SBCC[,21:ncol(SBCC)]
+head(SBCC)
+
+#Input data for a third redundancy analysis. Input of set of variables chosen by cluster analysis, 17 agro-climatic, plus 3 geographic and 12 dummies; they are already standardized
+
+#Input data, (Q matrix, all geographic and agro-climatic variables for all accessions)
+SBCCc<- read.table("RDA/RDA3.tsv", header = TRUE)
+
+#All variables, geographical, dummies, environmental, all standardized
+Allc<-SBCCc[,c("dummy_01","dummy_02","dummy_03","dummy_04","dummy_05","dummy_06","dummy_07",
+             "dummy_08","dummy_09","dummy_10","dummy_11","dummy_12","lon","lat","alt",
+             "verna_30d","verna_jan_feb","verna_mar_apr","pfrost_01","pcp_aut","pcp_win",
+             "pcp_mar_apr","pcp_may_jun","frost_jan_feb","frost_apr_may","tamp_win",
+             "tamp_spr","et0_spr","bal_aut","bal_win","bal_jun","bal_mar_apr_may")]
+
+#Just dummies
+Dummyc<-SBCCc[,c("dummy_01","dummy_02","dummy_03","dummy_04","dummy_05","dummy_06","dummy_07",
+             "dummy_08","dummy_09","dummy_10","dummy_11","dummy_12")]
+
+#Just geographic
+Geoc<-SBCCc[,c("lon","lat","alt")]
+
+#Just environmental (agro-climatic)
+Envc<-SBCCc[,c("verna_30d","verna_jan_feb","verna_mar_apr","pfrost_01","pcp_aut","pcp_win",
+             "pcp_mar_apr","pcp_may_jun","frost_jan_feb","frost_apr_may","tamp_win",
+             "tamp_spr","et0_spr","bal_aut","bal_win","bal_jun","bal_mar_apr_may")]
+
+#Just probabilities derived from structure, 4 populations or germplasm groups
+Clusterc <- SBCCc[,c("Q1","Q2","Q3","Q4")]
+```
+
+Standardization of variables 
+```{r}
+#Standardization of variables
+scaled.EnvGeoDum<-scale(EnvGeoDum)
+scaledEnvGeoDum.df<-as.data.frame(scaled.EnvGeoDum)
+
+scaled.env<-scale(Env)
+scaledenv.df <- as.data.frame(scaled.env)
+
+scaled.geo<-scale(Geo)
+scaledgeo.df <- as.data.frame(scaled.geo)
+```
+
+First redundancy analysis with just environmental (agroclimatic) variables. Then selection of most significant variables is done with step-wise regression, and a second, reduced, redundancy analysis is performed, with just the variables selected in multiple regression with default settings, until the first dummy variable was entered into the model. 
+```{r}
+#Redundancy analysis, complete data set
+SBCC_RDA<-rda(Cluster,scaledenv.df,scale=F)
+
+#Stepwise selection of variables, complete data, environmental, geographic and dummy variables
+RDA1<-rda(Cluster~1,scaledEnvGeoDum.df)
+RDA2<-rda(Cluster~.,scaledEnvGeoDum.df)
+step.forward<-ordistep(RDA1,scope=formula(RDA2), direction="forward",perm.max=200,pstep=999)
+
+#Redundancy analysis, complete data reduced to env variables selected by forward selection, until first dummy variable entered in the model
+SBCC_RDA_red<-rda(Cluster~pfrost_01+bal_06, data=scaledenv.df)
+```
+
+Information on outcome of RDA. Variance inflation ratio informs on multicolinearity (values above 10 are too high). R-squared adjusted for the number of parameters indicates proportion of variation explained
+```{r}
+#variance inflation ratio, above 10 indicates multicolinearity
+vif.cca(SBCC_RDA)
+vif.cca(SBCC_RDA_red)
+
+#R-squared, raw and adjusted, explained by rda
+RsquareAdj(SBCC_RDA_red)
+RsquareAdj(SBCC_RDA)
+```
+
+Plots of both redundancy analyses, scaling=0 chosen, as it results in good visualization of the plot; see help of the package for other scaling options
+```{r}
+#Triplot of rda results, check scaling options in help file
+plot(SBCC_RDA,type="text", scaling=0)
+plot(SBCC_RDA_red,type="text", scaling=0)
+```
+
+Third redundancy analysis with just 17 chosen environmental (agroclimatic) variables.  
+```{r}
+#Redundancy analysis, complete data set
+SBCCc_RDA<-rda(Clusterc,Envc,scale=F)
+```
+
+Information on outcome of RDA. Variance inflation ratio informs on multicollinearity (values above 10 are too high). R-squared adjusted for the number of parameters indicates proportion of variation explained
+```{r}
+#variance inflation ratio, above 10 indicates multicolinearity
+vif.cca(SBCCc_RDA)
+
+#R-squared, raw and adjusted, explained by rda
+RsquareAdj(SBCCc_RDA)
+```
+
+Plot of redundancy analyses, scaling=0 chosen, as it results in good visualization of the plot; see help of the package for other scaling options
+```{r}
+#Triplot of rda results, check scaling options in help file
+plot(SBCCc_RDA,type="text", scaling=0)
+```
+
+Variance of distribution of germplasm groups explained by #1 full model (all agro-climatic variables); #2 geographic variables, after agro-climatic variables are taken into account; #3 agro-climatic variables are taken into account. Significance calculated. 
+```{r}
+#Variance explained by different fractions of variables
+#1
+anova(SBCCc_RDA)
+#2
+anova.cca(rda(Clusterc,Geoc,Envc),step=1000)
+#3
+anova.cca(rda(Clusterc,Envc,Geoc),step=1000)
+```
+
+Percentage of variation of distribution of germplasm groups explained by environmental (agro-climatic) variables alone (fraction a), geographic variables alone (fraction c), environmental and geographic simultaneously (fraction b). Self-explanatory plot
+```{r}
+# Variation partitioning
+spe.part <- varpart(Clusterc, Envc, Geoc)
+spe.part
+plot(spe.part, digits=2)
+```
+
+Test of variance explained by different sets of variables
+```{r}
+# Test of fractions [a+b], only environmental variables
+anova.cca(rda(Clusterc, Envc), step=1000)
+# Test of fractions [b+c], only geographic variables
+anova.cca(rda(Clusterc, Geoc), step=1000)
+# Test of fractions [a+b+c], union of environmental and geographic
+env.pars <- cbind(Envc, Geoc)
+anova.cca(rda(Clusterc, env.pars), step=1000)
+#Test of fraction [a], environmental variables, excluding variation shared with geographic
+anova.cca(rda(Clusterc, Envc, Geoc), step=1000)
+#Test of fraction [c], geographic variables, excluding variation shared with environmental (b)
+anova.cca(rda(Clusterc, Geoc, Envc), step=1000)
+```
+
+Export results, files stored in directory RDA:
+```{r}
+Scores<-scores(SBCCc_RDA)
+Summaries<-summary(SBCCc_RDA)
+write.table(Scores$sites,'RDA/scores_genotypes.txt', sep='\t')
+write.table(Summaries$biplot,'RDA/scores_env.txt', sep='\t')
+write.table(Scores$species,'RDA/scores_germplasmgroups.txt', sep='\t')
+```

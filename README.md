@@ -20,6 +20,7 @@ diverse association analyses and how maps and SNP plots were produced:
 |:---------|:--------:|
 |[HOWTOclimate](./HOWTOclimate.html)| Preparation and selection of climate variables |
 |[HOWTOstructure](./HOWTOstructure.html)| Analysis of population structure of Spanish barleys |
+|[HOWTORDA](./HOWTORDA.html)| Redundancy Analysis |
 
 
 <!--|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) | -->
@@ -45,6 +46,7 @@ these protocols require a few R packages which must be installed to reproduce th
 [ggplot2](https://cran.r-project.org/package=ggplot2),
 [gplots](https://cran.r-project.org/package=gplots), 
 [qqman](https://cran.r-project.org/package=qqman)
+[vegan](https://cran.r-project.org/package=vegan)
 
 In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
 
