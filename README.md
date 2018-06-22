@@ -23,10 +23,10 @@ mapping and diverse protocols for association analyses:
 |[HOWTOstructure](./HOWTOstructure.html)| Analysis of population structure of Spanish barleys |
 |[HOWTORDA](./HOWTORDA.html)| Redundancy Analysis |
 |[HOWTOLD](./HOWTOLD.html)| Linkage Disequilibrium |
-|[HOWTOsnps](./HOWTOsnps.html)| Association between SNPs and climate variables (bayenv2) |
+|[HOWTOsnps](./HOWTOsnps.html)| Association between SNPs and climate variables (Bayenv2) |
 |[HOWTOsnpsLFMM](./HOWTOsnpsLFMM.html)| Association between SNPs and climate variables (LFMM) |
-|[HOWTOXtX](./HOWTOXtX.html)| XtX subpopulation differentiation (bayenv2) |
-
+|[HOWTOXtX](./HOWTOXtX.html)| XtX subpopulation differentiation (Bayenv2) |
+|[HOWTOXtX_BAYPASS](./HOWTOXtX_BAYPASS.html)| XtX subpopulation differentiation (BayPass) |
 
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
@@ -56,3 +56,4 @@ these protocols require a few R packages which must be installed to reproduce th
 
 In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
 
+The BayPass XtX protocol requires the system installation of [BayPass](http://www1.montpellier.inra.fr/CBGP/software/baypass).
