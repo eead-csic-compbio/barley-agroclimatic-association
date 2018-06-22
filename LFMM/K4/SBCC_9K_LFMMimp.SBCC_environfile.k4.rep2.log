@@ -1,0 +1,537 @@
+LFMM  Copyright (C) 2012 Eric Frichot
+This program comes with ABSOLUTELY NO WARRANTY; for details type './LFMM -l'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type './LFMM -l' for details.
+
+****                         LFMM Version 1.3                                   *****
+****           E. Frichot, S. Schoville, G. Bouchard, O. Francois               *****
+****                         Please cite our paper !                            *****
+****   Information at http://membres-timc.imag.fr/Olivier.Francois/lfmm/        *****
+
+/home/contrera/soft/LFMM_CL_v1.5/bin/LFMM -x SBCC_9K_LFMM.imputed.tr.tsv -v SBCC_environfile.tr.tsv -K 4 -p 5 -i 50000 -b 25000 -s 23456 -o SBCC_9K_LFMM.rep2 
+Summary of the options:
+
+        -n (number of individuals)      135
+        -L (number of loci)             6128
+        -K (number of latent factors)   4
+        -o (output file)                SBCC_9K_LFMM.rep2
+        -i (number of iterations)       50000
+        -b (burnin)                     25000
+        -s (seed random init)           23456
+        -p (number of processes (CPU))  5
+        -x (genotype file)              SBCC_9K_LFMM.imputed.tr.tsv
+        -v (variable file)              SBCC_environfile.tr.tsv
+        -D (number of covariables)      21
+
+Read variable file:
+ 	SBCC_environfile.tr.tsv		OK.
+
+WARNING: You launched LFMM command line with several variables. The model will be
+	launched sequentially (independently) for each variable.
+
+Read genotype file:
+ 	SBCC_9K_LFMM.imputed.tr.tsv		OK.
+
+<<<<
+	 Analyse for variable 1
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827282.4949	 DIC: 827282.6033 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s1.4.dic.
+
+	The zscores for variable 1 are registered in:
+ 		SBCC_9K_LFMM.rep2_s1.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 1 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 2
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6172	 DIC: 827348.2142 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s2.4.dic.
+
+	The zscores for variable 2 are registered in:
+ 		SBCC_9K_LFMM.rep2_s2.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 2 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 3
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6067	 DIC: 827348.9625 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s3.4.dic.
+
+	The zscores for variable 3 are registered in:
+ 		SBCC_9K_LFMM.rep2_s3.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 3 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 4
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6368	 DIC: 827348.9216 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s4.4.dic.
+
+	The zscores for variable 4 are registered in:
+ 		SBCC_9K_LFMM.rep2_s4.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 4 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 5
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6137	 DIC: 827348.5903 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s5.4.dic.
+
+	The zscores for variable 5 are registered in:
+ 		SBCC_9K_LFMM.rep2_s5.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 5 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 6
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6097	 DIC:  827350.66 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s6.4.dic.
+
+	The zscores for variable 6 are registered in:
+ 		SBCC_9K_LFMM.rep2_s6.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 6 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 7
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.5711	 DIC: 827348.5299 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s7.4.dic.
+
+	The zscores for variable 7 are registered in:
+ 		SBCC_9K_LFMM.rep2_s7.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 7 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 8
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.5945	 DIC: 827348.4887 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s8.4.dic.
+
+	The zscores for variable 8 are registered in:
+ 		SBCC_9K_LFMM.rep2_s8.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 8 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 9
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6142	 DIC: 827348.8344 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s9.4.dic.
+
+	The zscores for variable 9 are registered in:
+ 		SBCC_9K_LFMM.rep2_s9.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 9 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 10
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.672	 DIC: 827349.0325 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s10.4.dic.
+
+	The zscores for variable 10 are registered in:
+ 		SBCC_9K_LFMM.rep2_s10.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 10 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 11
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6065	 DIC: 827349.1201 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s11.4.dic.
+
+	The zscores for variable 11 are registered in:
+ 		SBCC_9K_LFMM.rep2_s11.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 11 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 12
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6363	 DIC: 827348.6681 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s12.4.dic.
+
+	The zscores for variable 12 are registered in:
+ 		SBCC_9K_LFMM.rep2_s12.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 12 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 13
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6169	 DIC: 827340.9019 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s13.4.dic.
+
+	The zscores for variable 13 are registered in:
+ 		SBCC_9K_LFMM.rep2_s13.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 13 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 14
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6713	 DIC: 827349.3382 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s14.4.dic.
+
+	The zscores for variable 14 are registered in:
+ 		SBCC_9K_LFMM.rep2_s14.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 14 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 15
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6368	 DIC: 827349.1598 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s15.4.dic.
+
+	The zscores for variable 15 are registered in:
+ 		SBCC_9K_LFMM.rep2_s15.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 15 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 16
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6175	 DIC: 827347.3983 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s16.4.dic.
+
+	The zscores for variable 16 are registered in:
+ 		SBCC_9K_LFMM.rep2_s16.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 16 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 17
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6329	 DIC: 827329.135 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s17.4.dic.
+
+	The zscores for variable 17 are registered in:
+ 		SBCC_9K_LFMM.rep2_s17.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 17 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 18
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6174	 DIC: 827342.8392 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s18.4.dic.
+
+	The zscores for variable 18 are registered in:
+ 		SBCC_9K_LFMM.rep2_s18.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 18 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 19
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6284	 DIC: 827344.0747 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s19.4.dic.
+
+	The zscores for variable 19 are registered in:
+ 		SBCC_9K_LFMM.rep2_s19.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 19 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 20
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6579	 DIC: 827336.987 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s20.4.dic.
+
+	The zscores for variable 20 are registered in:
+ 		SBCC_9K_LFMM.rep2_s20.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 20 worked without error.
+>>>>
+
+
+<<<<
+	 Analyse for variable 21
+
+		Start of the Gibbs Sampler algorithm.
+
+	[                                                                           ]
+	[===========================================================================]
+
+		End of the Gibbs Sampler algorithm.
+
+	ED:827315.6264	 DIC: 827338.3259 
+
+	The statistics for the run are registered in:
+ 		SBCC_9K_LFMM.rep2_s21.4.dic.
+
+	The zscores for variable 21 are registered in:
+ 		SBCC_9K_LFMM.rep2_s21.4.zscore.
+	The columns are: zscores, -log10(p-values), p-values.
+
+	-------------------------
+	The execution for variable 21 worked without error.
+>>>>
+
