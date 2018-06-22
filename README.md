@@ -48,7 +48,8 @@ these protocols require a few R packages which must be installed to reproduce th
 [gplots](https://cran.r-project.org/package=gplots), 
 [qqman](https://cran.r-project.org/package=qqman),
 [vegan](https://cran.r-project.org/package=vegan),
-[LDcorSV](https://cran.r-project.org/web/packages/LDcorSV/index.html)
+[LDcorSV](https://cran.r-project.org/web/packages/LDcorSV/index.html),
+[pracma](https://cran.r-project.org/package=pracma)
 
 In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
 
