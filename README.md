@@ -12,6 +12,7 @@ B Contreras-Moreira (1,2), R Serrano-Notivoli (1), NE Mohamed (1), CP Cantalapie
 1. Estacion Experimental de Aula Dei-CSIC, Zaragoza, Spain
 2. Fundacion ARAID, Zaragoza, Spain
 
+![**Legend.** Flowchart of the analyses carried out in this work.](./flowchart.png)
 
 There are several R markdown documents describing the selection of agroclimatic variables, 
 mapping and diverse protocols for association analyses:
