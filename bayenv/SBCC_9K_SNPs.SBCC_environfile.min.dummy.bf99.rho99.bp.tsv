@@ -1,0 +1,4 @@
+SNPidentifier	variable	BF	rho_Spearman	chr	bp	order	allele1	allele2	missing	MAF
+BOPA1_4361-1867	dummy_06	11.297	-0.181	4	608851463	4218	A	G	2	0.278
+SCRI_RS_166119	dummy_10	8.872	-0.151	3	599409711	3059	C	T	0	0.474
+SCRI_RS_172072	dummy_06	6.458	0.157	4	609247080	4227	A	G	0	0.267
