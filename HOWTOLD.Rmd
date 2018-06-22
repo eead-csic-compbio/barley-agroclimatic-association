@@ -43,11 +43,12 @@ These CSV files are called [*Geno1H*](LD/Geno1H.csv), [*Geno2H*](LD/Geno2H.csv),
 
 Before moving on we can take these files, one per chromosome, and impute missing genotype calls 
 with R package [linkim](https://cran.r-project.org/package=linkim), a linkage-based method for 
-imputing missing diploid genotypes. 
+imputing missing diploid genotypes published with [doi:10.4172/2329-9533.1000115](https://doi.org/10.4172/2329-9533.1000115).
 This method has some stochastic component as independent runs provide different results. 
-It was published with [doi:10.4172/2329-9533.1000115](https://doi.org/10.4172/2329-9533.1000115).
+For this reason the block code below has eval=FALSE so that it is compatible with LFMM results in
+protocol [HOWTOLFMM](./HOWTOsnpsLFMM.html).
 
-```{r impute}
+```{r impute, eval=FALSE}
 library(linkim)
 
 # set barley chr names
@@ -106,7 +107,7 @@ In addition, a file with probabilities of membership to K=4 subpopulations was p
 
 ## Computing LD
 
-```{r LD, cache=T}
+```{r LD, eval=FALSE}
 library(LDcorSV)
 
 # set window length
@@ -150,7 +151,7 @@ for (c in 1:8){ # 7 real + 1 fake chr for unmapped markers
 
 ## Validating and exporting LD estimates
 
-```{r LDeval}
+```{r LDeval, eval=FALSE}
 library(qqman)
 
 # output file names

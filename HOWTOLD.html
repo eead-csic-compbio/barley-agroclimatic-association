@@ -145,7 +145,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Linkage disequilibrium of SBCC barleys</h1>
-<h4 class="date"><em>22/Jun/2018</em></h4>
+<h4 class="date"><em>22/jun/2018</em></h4>
 
 </div>
 
@@ -168,7 +168,7 @@ $(document).ready(function () {
 </div>
 <div id="imputing-missing-data" class="section level2">
 <h2>Imputing missing data</h2>
-<p>Before moving on we can take these files, one per chromosome, and impute missing genotype calls with R package <a href="https://cran.r-project.org/package=linkim">linkim</a>, a linkage-based method for imputing missing diploid genotypes. This method has some stochastic component as independent runs provide different results. It was published with <a href="https://doi.org/10.4172/2329-9533.1000115">doi:10.4172/2329-9533.1000115</a>.</p>
+<p>Before moving on we can take these files, one per chromosome, and impute missing genotype calls with R package <a href="https://cran.r-project.org/package=linkim">linkim</a>, a linkage-based method for imputing missing diploid genotypes published with <a href="https://doi.org/10.4172/2329-9533.1000115">doi:10.4172/2329-9533.1000115</a>. This method has some stochastic component as independent runs provide different results. For this reason the block code below has eval=FALSE so that it is compatible with LFMM results in protocol <a href="./HOWTOsnpsLFMM.html">HOWTOLFMM</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(linkim)
 
 <span class="co"># set barley chr names</span>
