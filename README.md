@@ -23,7 +23,9 @@ mapping and diverse protocols for association analyses:
 |[HOWTORDA](./HOWTORDA.html)| Redundancy Analysis |
 |[HOWTOLD](./HOWTOLD.html)| Linkage Disequilibrium |
 |[HOWTOsnps](./HOWTOsnps.html)| Association between SNPs and climate variables (bayenv2) |
+|[HOWTOsnpsLFMM](./HOWTOsnpsLFMM.html)| Association between SNPs and climate variables (LFMM) |
 |[HOWTOXtX](./HOWTOXtX.html)| XtX subpopulation differentiation (bayenv2) |
+
 
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
