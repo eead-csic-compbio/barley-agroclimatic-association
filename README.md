@@ -14,7 +14,7 @@ B Contreras-Moreira (1,2), R Serrano-Notivoli (1), NE Mohamed (1), CP Cantalapie
 
 
 There are several R markdown documents describing the selection of agroclimatic variables, 
-diverse association analyses and how maps and SNP plots were produced:
+mapping and diverse protocols for association analyses:
 
 | filename | summary | 
 |:---------|:--------:|
