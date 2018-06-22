@@ -1,0 +1,42 @@
+LFMM CL Mac and Linux version 1.4, 11/01/15
+by Eric Frichot (eric.frichot@imag.fr)
+
+*******************
+*   INSTALLATION   *
+*******************
+
+1. execute the install script (install.sh) in the main
+directory. To execute it in a terminal shell, go to LFMM 
+main directory and write "./install.sh". If the script is 
+not executable, type "chmod +x install.sh" and then 
+"./install.sh".
+
+2. If no error, the executable is in the bin directory. 
+
+******************
+*  ORGANIZATION  *
+******************
+
+It is organized in 5 folders:
+- code
+- documentation
+- examples
+- bin
+
+PLEASE, read the documentation before using our software. It provides
+examples and information on the model and the software.
+
+PLEASE, if you find a bug, contact us. We will fix it as soon as possible.
+
+**************
+*  VERSIONS  *
+**************
+
+1.1: 	- First main version
+
+1.2: 	- Bug fixed on the transformation of zscore in p-values.
+
+1.3:	- new practical examples to control the FDR, C programs for data
+	conversion, PCA and tracyWidom tests. Few bugs fixed. Code factorization.
+
+1.4:    - internal error fixed on large data sets.
