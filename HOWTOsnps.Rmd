@@ -154,10 +154,13 @@ png(file="matrices/SBCCmatrix_BP.tree.png",height=1000)
 heatmap.2(mat_BP,scale="none",symm=T,dendrogram="row",trace="none",Colv=F,labCol="",
           cexRow=0.80,key=F,lhei = c(1.5,20),main="8457 SNPs (BayPass)")
 dev.off()
+
 ```
 In both cases it can be seen that two-rowed barleys are grouped clearly separated from the rest (2), and the remaining clades are pretty homogeneous in terms of kinship, as neighbors most often bear the same STRUCTURE-derived subpopulation number:
 ![*SBCCmatrix_nr.tree.png*](matrices/SBCCmatrix_nr.tree.png)
+
 ![*SBCCmatrix_BP.tree.png*](matrices/SBCCmatrix_BP.tree.png)
+
 
   
 ## Obtaining a robust non-redundant covariance matrix with replicates
@@ -1332,7 +1335,7 @@ for (climvar in dumvars) {
 ```
 Manhattan plots are produced for all variables and stored in folders *plots/*, *plots_pc/*, *plots_null/* and *plots_dummy/*:
 
-![**Legend.** Median BF of SNPs associated to $prob(frost)<0.1$. The 99th percentil is plotted as a reference. Note that Spearman correlations must also be $>perc99$ in order to be considered significant](plots/SBCC_9K_SNPs.pfrost_01.cM.png)
+![**Legend.** Median BF of SNPs associated to $prob(frost)<0.1$. The 99th percentil is plotted as a reference. Note that Spearman correlations must also be $>perc99$ in order to be considered significant](plots/SBCC_9K_SNPs.pfrost.cM.png)
 
 The resulting *.bf99.rho99.*.tsv* files 
 contain pairs of SNPs and environmental variables with both Bayes factor and Spearman correlations over the respective 99% percentiles. For each of them, the reported value corresponds to the median and minimum value among three replicates, respectively. There are 96 significant pairs, with some repeated SNPs and some climate variables more frequent than others:
