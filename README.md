@@ -22,9 +22,9 @@ mapping and diverse protocols for association analyses:
 |[HOWTOstructure](./HOWTOstructure.html)| Analysis of population structure of Spanish barleys |
 |[HOWTORDA](./HOWTORDA.html)| Redundancy Analysis |
 |[HOWTOLD](./HOWTOLD.html)| Linkage Disequilibrium |
-|[HOWTOXtX](./HOWTOXtX.html)| XtX subpopulation differentiation |
+|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SNPs and climate variables (bayenv2) |
+|[HOWTOXtX](./HOWTOXtX.html)| XtX subpopulation differentiation (bayenv2) |
 
-<!--|[HOWTOsnps.md](./HOWTOsnps.md)| Association between SBCC SNPs and climate variables (bayenv2) | -->
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
 <!--An example of the maps that were produced is shown below:
