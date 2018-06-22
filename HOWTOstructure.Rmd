@@ -35,18 +35,27 @@ tail SBCC_9K_SNPs.structure.tsv.log
 
 ## Inferring the population structure
 
-After transposing [*SBCC_9K_SNPs.structure.tsv*](./SBCC_9K_SNPs.structure.tsv), Structure v2.3.4 was run 
-under an admixture model, from K=1 to K=6. This was replicated 6x with a burn-in period of 15,000 and 20,000 Monte Carlo Markov Chain (MCMC) iterations, respectively. Evanno Delta K was used to estimate the optimal number of subpopulations,
+After transposing [*SBCC_9K_SNPs.structure.tsv*](./SBCC_9K_SNPs.structure.tsv), 
+Structure v2.3.4 was run under an admixture model, from K=1 to K=6. 
+This was replicated 6x with a burn-in period of 10,000 and 20,000 Monte Carlo Markov Chain (MCMC) iterations, respectively. Evanno's $\Delta K$ was used to estimate the optimal number of subpopulations,
 which was found to be K=4. The program was run one more time with a 100K burn-in and 100K MCMC iterations to assign SBCC accessions to K=4 subpopulations, as described in [doi:10.1371/journal.pone.0094688](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094688).
 
 The following diagram represents these populations in four colors:
 ![structureK4](plots/structureK4.jpg) 
 
 The assignment of barley accessions to these populations can be found in file 
-[SBCC_Kinship.full.tsv](raw/SBCC_Kinship.full.tsv).
+[SBCC_Kinship.full.tsv](raw/SBCC_Kinship.full.tsv). Landraces were allocated to 4 clusters comprising 15, 10, 49 and 61 accessions. 
 
 As detailed in [SBCC_Kinship_clusters_K4.tsv](raw/SBCC_Kinship_clusters_K4.tsv), these assignments are almost identical
 to others obtained from a previous STRUCTURE analysis performed by EEM Naheif with 6,223 Infinium SNPs (runs=10, K=1 to 6, burn-in and MCMC=10K iterations). A 0.996 Pearson correlation is observed, with all landraces assigned to the same subpopulation except SBCC054, which was assigned alternatively to subpopulations 3 and 4. 
+
+
+
+
+
+
+
+
 
 <!--(see [SBCC_Kinship.tsv](raw/SBCC_Kinship.tsv)).-->
 
