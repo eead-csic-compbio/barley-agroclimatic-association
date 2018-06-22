@@ -1,0 +1,219 @@
+---
+title: "XtX subpopulation differentiation"
+output:
+  html_document:
+    fig_caption: yes
+    highlight: zenburn
+    theme: cerulean
+    toc: yes
+    toc_depth: 4
+  pdf_document:
+    fig_caption: yes
+    highlight: zenburn
+    toc: yes
+    toc_depth: 4
+  word_document: default
+date: '`r format(Sys.Date(),"%d/%b/%Y")`'
+---
+
+```{r knitr setup, include=FALSE,  eval=TRUE, echo=FALSE, warning=FALSE}
+library(knitr)
+knitr::opts_chunk$set(eval=TRUE, cache=FALSE, message=FALSE, warning=FALSE, 
+                      comment = "", results="markup")
+```
+This document describes how SNP genotypes from 135 landraces of the Spanish Barley Core Collection (SBCC) grouped into 4 subpopulations, were used to obtain XtX statistics by CP Cantalapiedra.
+
+
+# Rebuilding data files to obtain subpopulation-based bayenv input files
+
+## Files for covariance matrix
+
+```{r b1, engine='bash'}
+cd xtx_subpops
+./bayenv_lines_to_subpops.py SBCC_order.subpops.tab ../SBCC_order.txt ../SBCC_nr_SNPs.tsv show \
+> SBCC_nr_subpops.tsv 2> SBCC_nr_subpops.err
+```
+
+## Files for bayenv XtX analysis
+
+```{r b2, engine='bash'}
+cd xtx_subpops
+./bayenv_lines_to_subpops.py SBCC_order.subpops.tab ../SBCC_order.txt ../SBCC_9K_SNPs.tsv show \
+> SBCC_9K_subpops.tsv 2> SBCC_9K_subpops.err
+```
+
+**NOTE**: the "show" option is used to include in the output file those SNPs with missing data in some of the genotypes. The opposite could be obtained using "hide" as option.
+
+# Running bayenv2 XtX analyses
+
+Following the work of [Rusell et al 2016](http://www.nature.com/ng/journal/v48/n9/full/ng.3612.html), 
+200K MCMC steps are performed.
+
+First, a dummy climate file is required in order to run bayenv:
+
+```{r b3, engine='bash'}
+cd xtx_subpops
+cat ../SBCC_environfile.tsv | head -1 | awk '{print $1"\t"$2"\t"$3"\t"$4}' > envfile.dummy
+```
+
+A covariance matrix is also required. Here it is computed 10 times:
+
+```{r b4, engine='bash', eval=FALSE}
+cd xtx_subpops
+mkdir -p matrices/raw/
+
+# Create 10 covariance matrices, this will take some time
+for i in {1..10}; do
+	rnd=$(perl -e 'printf("%05d",rand(99999))');
+	echo $rnd >> bayenv.covar.rnd_seeds
+	mkdir _job$i; cd _job$i; ln -s ../SBCC_nr_subpops.tsv .; \
+	../soft/bayenv2/bayenv2 -i SBCC_nr_subpops.tsv -p 4 -k 100000 -r $rnd \
+	> ../SBCC_nr_subpops_matrix_it100K_$i.out & 
+	cd ..;
+done;
+
+# We can now put the resulting files away:
+rm -rf _job*
+gzip SBCC_nr_subpops_matrix_it100K_*
+mv SBCC_nr_subpops_matrix_it100K_* matrices/raw/
+
+# Extract final matrix from each replicate
+for i in {1..10}; do 
+  zcat matrices/raw/SBCC_nr_subpops_matrix_it100K_$i.out.gz | \
+  perl -lne 'if(/ITER = 100000/){$ok=1}elsif($ok){ print }' \
+  | sed '/^$/d' > matrices/SBCC_nr_subpops_matrix_$i.txt
+done
+```
+A single average matrix can be computed as follows:
+
+```{r average, eval=FALSE}
+setwd(xtx_subpops)
+
+# read all final matrices
+m1 = as.matrix( read.table(file="matrices/raw/SBCC_nr_subpops_matrix_1.txt", header=F) )
+m2 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_2.txt", header=F) )
+m3 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_3.txt", header=F) )
+m4 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_4.txt", header=F) )
+m5 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_5.txt", header=F) )
+m6 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_6.txt", header=F) )
+m7 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_7.txt", header=F) )
+m8 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_8.txt", header=F) )
+m9 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_9.txt", header=F) )
+m10 = as.matrix( read.table(file="matrices/SBCC_nr_subpops_matrix_10.txt", header=F) )
+
+# make a list of matrices and get mean as explained in:
+mat_list = list( m1, m2, m3, m4, m5, m6, m7, m8, m9, m10 )
+mean_mat = apply(simplify2array(mat_list), c(1,2), mean)
+
+# write resulting mean cov matrix
+write.table(mean_mat,file="matrices/SBCC_nr_subpops_matrix_mean.txt",
+            sep="\t",row.names=F,col.names=F,quote=F)
+```
+
+This should create file *xtx_subpops/matrices/SBCC_nr_subpops_matrix_mean.txt*
+
+Now three replicates of bayenv XTX will be run:
+
+```{r b5, engine='bash', eval=FALSE}
+cd xtx_subpops
+
+# 1st replicate run
+rnd=$(perl -e 'printf("%05d",rand(99999))');
+echo "$rnd" > SBCC_9K_subpops.tsv.xtx.rep1.rnd
+
+../soft/bayenv2/calc_xtx_parallel.pl 5 bayenv2 -X -t -i SBCC_9K_subpops.tsv -p 4 \
+-e envfile.dummy -n 1 \
+-m matrices/SBCC_nr_subpops_matrix_mean.txt \
+-k 200000 -r "$rnd" -o SBCC_9K_subpops.tsv.xtx.rep1 -c \
+> SBCC_9K_subpops.tsv.xtx.rep1.stdout 2>&1;
+
+# 2nd run
+rnd=$(perl -e 'printf("%05d",rand(99999))');
+echo "$rnd" > SBCC_9K_subpops.tsv.xtx.rep2.rnd
+
+../soft/bayenv2/calc_xtx_parallel.pl 5 bayenv2 -X -t -i SBCC_9K_subpops.tsv -p 4 \
+-e envfile.dummy -n 1 \
+-m matrices/SBCC_nr_subpops_matrix_mean.txt \
+-k 200000 -r "$rnd" -o SBCC_9K_subpops.tsv.xtx.rep2 -c \
+> SBCC_9K_subpops.tsv.xtx.rep2.stdout 2>&1;
+
+# 3rd run
+rnd=$(perl -e 'printf("%05d",rand(99999))');
+echo "$rnd" > SBCC_9K_subpops.tsv.xtx.rep3.rnd
+
+../soft/bayenv2/calc_xtx_parallel.pl 5 bayenv2 -X -t -i SBCC_9K_subpops.tsv -p 4 \
+-e envfile.dummy -n 1 \
+-m matrices/SBCC_nr_subpops_matrix_mean.txt \
+-k 200000 -r "$rnd" -o SBCC_9K_subpops.tsv.xtx.rep3 -c \
+> SBCC_9K_subpops.tsv.xtx.rep3.stdout 2>&1;
+
+# compress outfiles
+gzip SBCC_9K_subpops.tsv.xtx.rep1
+gzip SBCC_9K_subpops.tsv.xtx.rep2
+gzip SBCC_9K_subpops.tsv.xtx.rep3
+```
+
+Let's inspect one of the XtX bayenv files:
+
+```{r, engine='bash'}
+cd xtx_subpops
+zcat SBCC_9K_subpops.tsv.xtx.rep1.gz | head -6
+```
+
+
+# Annotating and exporting XtX results 
+
+```{r, engine='bash'}
+cd xtx_subpops
+
+# add SNP name to XtX results
+perl xtx2table.pl SBCC_9K_subpops.tsv.xtx.rep1.gz ../SBCC_9K_SNPs.annot.tsv > \
+  SBCC_9K_subpops.tsv.xtx.rep1.tsv
+perl xtx2table.pl SBCC_9K_subpops.tsv.xtx.rep2.gz ../SBCC_9K_SNPs.annot.tsv > \
+  SBCC_9K_subpops.tsv.xtx.rep2.tsv
+perl xtx2table.pl SBCC_9K_subpops.tsv.xtx.rep3.gz ../SBCC_9K_SNPs.annot.tsv > \
+  SBCC_9K_subpops.tsv.xtx.rep3.tsv
+
+head -6 SBCC_9K_subpops.tsv.xtx.rep1.tsv
+
+gzip -f SBCC_9K_subpops.tsv.xtx.rep1.tsv
+gzip -f SBCC_9K_subpops.tsv.xtx.rep2.tsv
+gzip -f SBCC_9K_subpops.tsv.xtx.rep3.tsv
+
+
+# add cM & bp map positions (./obtain_map.R IN OUT MAP)
+
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep1.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep1.bp.tsv ../raw/9920_SNPs_SBCC_bp_map2017.curated.tsv 
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep2.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep2.bp.tsv ../raw/9920_SNPs_SBCC_bp_map2017.curated.tsv 
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep3.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep3.bp.tsv ../raw/9920_SNPs_SBCC_bp_map2017.curated.tsv 
+
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep1.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep1.cM.tsv ../raw/9920_SNPs_SBCC_cM_map2017.curated.tsv 
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep2.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep2.cM.tsv ../raw/9920_SNPs_SBCC_cM_map2017.curated.tsv 
+Rscript ./obtain_map.R SBCC_9K_subpops.tsv.xtx.rep3.tsv.gz \
+  SBCC_9K_subpops.tsv.xtx.rep3.cM.tsv ../raw/9920_SNPs_SBCC_cM_map2017.curated.tsv
+
+# join all results into a single file
+join -t $'\t' SBCC_9K_subpops.tsv.xtx.rep1.bp.tsv SBCC_9K_subpops.tsv.xtx.rep2.bp.tsv \
+  | join -t $'\t' - SBCC_9K_subpops.tsv.xtx.rep3.bp.tsv \
+  | awk '{print $1"\t"$3"\t"$4"\t"$2"\t"$5"\t"$8}' \
+  >  SBCC_9K_subpops.tsv.xtx.bp.tsv 
+
+join -t $'\t' SBCC_9K_subpops.tsv.xtx.rep1.cM.tsv SBCC_9K_subpops.tsv.xtx.rep2.cM.tsv \
+  | join -t $'\t' - SBCC_9K_subpops.tsv.xtx.rep3.cM.tsv \
+  | awk '{print $1"\t"$3"\t"$4"\t"$2"\t"$5"\t"$8}' \
+  >  SBCC_9K_subpops.tsv.xtx.cM.tsv
+
+head -6 SBCC_9K_subpops.tsv.xtx.bp.tsv
+
+head -6 SBCC_9K_subpops.tsv.xtx.cM.tsv
+```
+
+The final results file of tis protocol are
+[SBCC_9K_subpops.tsv.xtx.bp.tsv](xtx_subpops/SBCC_9K_subpops.tsv.xtx.bp.tsv) and
+[SBCC_9K_subpops.tsv.xtx.cM.tsv](xtx_subpops/SBCC_9K_subpops.tsv.xtx.cM.tsv)
+
