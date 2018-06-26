@@ -38,22 +38,22 @@ mapping and diverse protocols for association analyses:
 Besides [bayenv2](https://gcbias.org/bayenv) and a few Perl scripts, included in this repository,
 these protocols require a few R packages which must be installed to reproduce the results:
 
-[dplyr](https://cran.r-project.org/package=dplyr),
-[grid](https://cran.r-project.org/package=grid),
-[maptools](https://cran.r-project.org/package=maptools),
-[raster](https://cran.r-project.org/package=raster),
+[LDcorSV](https://cran.r-project.org/web/packages/LDcorSV/index.html),
 [ape](https://cran.r-project.org/package=ape),
+[calibrate](https://cran.r-project.org/package=calibrate),
 [cluster](https://cran.r-project.org/package=cluster),
 [corrplot](https://cran.r-project.org/package=corrplot),
 [dendextend](https://cran.r-project.org/package=dendextend),
 [devtools](https://cran.r-project.org/package=devtools),
+[dplyr](https://cran.r-project.org/package=dplyr),
 [ggplot2](https://cran.r-project.org/package=ggplot2),
 [gplots](https://cran.r-project.org/package=gplots), 
-[qqman](https://cran.r-project.org/package=qqman),
-[vegan](https://cran.r-project.org/package=vegan),
-[LDcorSV](https://cran.r-project.org/web/packages/LDcorSV/index.html),
-[pracma](https://cran.r-project.org/package=pracma)
+[grid](https://cran.r-project.org/package=grid),
+[knitr](https://cran.r-project.org/package=knitr). 
+[maptools](https://cran.r-project.org/package=maptools),
+[pracma](https://cran.r-project.org/package=pracma),
+[raster](https://cran.r-project.org/package=raster),
+[vegan](https://cran.r-project.org/package=vegan).
 
-In addition [knitr](https://cran.r-project.org/package=knitr) is required to compile the .Rmd files in Rstudio.
 
 The BayPass XtX protocol requires the system installation of [BayPass](http://www1.montpellier.inra.fr/CBGP/software/baypass).
