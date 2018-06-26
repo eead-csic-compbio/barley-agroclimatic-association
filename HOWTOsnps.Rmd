@@ -32,11 +32,17 @@ First, we shall write a **SNPSFILE** containing allele counts across populations
 
 Second, SNPs will be used to compute a **covariance matrix** which captures the background similarity between landraces. 
 
-Note: the latest qqman R package was installed as follows:
+*NOTE*: originally we used the original [qqman](https://github.com/stephenturner/qqman) R package, installed as follows:
 ```{r, engine='bash', eval=FALSE}
 library(devtools)
 install_github("stephenturner/qqman")
 ```
+Eventually we modified that code and currently now we import it as:
+```{r tweakedManhattanFromqqman}
+library(calibrate)
+source('./manhattan.R')
+```
+
 
 ## Formatting SNPs
 
@@ -183,6 +189,7 @@ for i in {1..10}; do
   cd ..;
 done
 ```
+
 It might be good idea to record the seed numbers:
 ```{r, engine='bash', eval=FALSE}
 36316
@@ -1173,7 +1180,8 @@ Rrs1_gen = read.table(file="./raw/Rrs1_flanking.tsv",header=F)
 Vrn3_gen = read.table(file="Vrn3/Vrn3.annot.tsv",header=F)
 
 # plot manhattan plots of median BF estimates
-library(qqman)
+#library(qqman)
+
 climvars = levels(BF4_med$variable)
 chrnames = c("1H","2H","3H","4H","5H","6H","7H")
 
