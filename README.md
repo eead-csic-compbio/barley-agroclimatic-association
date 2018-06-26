@@ -33,6 +33,11 @@ mapping and diverse protocols for association analyses:
 <!--An example of the maps that were produced is shown below:
 ![**Legend.** Sample map of SNPs and agroclimatic variable](./maps/plots/BOPA2_12_10979_verna_30d.png) -->
 
+## Downloads
+
+It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 850MB. 
+
+
 ## Dependencies
 
 Besides [bayenv2](https://gcbias.org/bayenv) and a few Perl scripts, included in this repository,
