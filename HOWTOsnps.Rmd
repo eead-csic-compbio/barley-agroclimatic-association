@@ -37,7 +37,8 @@ Second, SNPs will be used to compute a **covariance matrix** which captures the 
 library(devtools)
 install_github("stephenturner/qqman")
 ```
-Eventually we modified that code and currently now we import it as:
+Eventually we modified that code and currently now we import it as [manhattan.R](./manhattan.R),
+which allows increasing the size of annotated SNPs in plots:
 ```{r tweakedManhattanFromqqman}
 library(calibrate)
 source('./manhattan.R')

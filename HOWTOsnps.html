@@ -145,7 +145,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Association between SNPs and climate variables (bayenv2)</h1>
-<h4 class="date"><em>26/jun/2018</em></h4>
+<h4 class="date"><em>27/jun/2018</em></h4>
 
 </div>
 
@@ -171,7 +171,7 @@ $(document).ready(function () {
 <p><em>NOTE</em>: originally we used the original <a href="https://github.com/stephenturner/qqman">qqman</a> R package, installed as follows:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">library</span>(devtools)
 <span class="kw">install_github</span>(<span class="st">&quot;stephenturner/qqman&quot;</span>)</code></pre></div>
-<p>Eventually we modified that code and currently now we import it as:</p>
+<p>Eventually we modified that code and currently now we import it as <a href="./manhattan.R">manhattan.R</a>, which allows increasing the size of annotated SNPs in plots:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(calibrate)
 <span class="kw">source</span>(<span class="st">'./manhattan.R'</span>)</code></pre></div>
 <div id="formatting-snps" class="section level2">
@@ -477,9 +477,9 @@ reading environ
 num_alleles = 2.000000
 number of loci = 1
 
-real    0m44.872s
-user    0m17.320s
-sys 0m4.012s</code></pre>
+real    0m38.024s
+user    0m16.728s
+sys 0m3.620s</code></pre>
 <p>Note that the outfile <a href="Vrn3/Vrn3.SBCC_environfile.bf"><em>Vrn3.SBCC_environfile.bf</em></a> will be appended more lines if the command is re-run. In order to properly read the results, we can use a custom script:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">./bf2table.pl</span> Vrn3/Vrn3.SBCC_environfile.bf SBCC_environfile_order.txt \
   <span class="kw">&gt;</span> Vrn3/Vrn3.SBCC_environfile.bf.tsv
@@ -542,9 +542,9 @@ reading environ
 num_alleles = 2.000000
 number of loci = 1
 
-real    0m58.433s
-user    0m14.420s
-sys 0m4.832s
+real    0m56.651s
+user    0m14.444s
+sys 0m4.704s
 Vrn3/Vrn3.tsv   1.4711e+02</code></pre>
 </div>
 <div id="test-run-with-bopa2_12_30894-and-the-null-covariance-matrix" class="section level2">
@@ -581,9 +581,9 @@ reading environ
 num_alleles = 2.000000
 number of loci = 1
 
-real    0m39.475s
-user    0m16.752s
-sys 0m3.852s</code></pre>
+real    1m3.326s
+user    0m18.872s
+sys 0m4.972s</code></pre>
 <p>Note that the outfile <a href="./Vrn3.SBCC_environfile.null.bf"><em>Vrn3.SBCC_environfile.null.bf</em></a> will be appended more lines if the command is re-run. In order to properly read the results, we can use a custom script:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">./bf2table.pl</span> Vrn3/Vrn3.SBCC_environfile.null.bf SBCC_environfile_order.txt \
   <span class="kw">&gt;</span> Vrn3/Vrn3.SBCC_environfile.null.bf.tsv
