@@ -52,6 +52,7 @@ these protocols require a few R packages which must be installed to reproduce th
 [knitr](https://cran.r-project.org/package=knitr). 
 [maptools](https://cran.r-project.org/package=maptools),
 [pracma](https://cran.r-project.org/package=pracma),
+[qqman](https://cran.r-project.org/package=qqman),
 [raster](https://cran.r-project.org/package=raster),
 [vegan](https://cran.r-project.org/package=vegan).
 
