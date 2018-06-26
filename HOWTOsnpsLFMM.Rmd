@@ -71,7 +71,9 @@ The resulting [*SBCC_9K_LFMM.tr.tsv*](./SBCC_9K_LFMM.tr.tsv) file is the **SNPSF
 
 ## Imputing missing SNP data
 
-We realised that LFMM does not cope well with missing data, as in our tests (see file [LFMMvsBAYENV.xlsx](LFMM/old/LFMMvsBAYENV.xlsx)) markers with missing data were two orders or magnitude more likely to be associated to climate vars. Therefore we used instead a dataset with imputed missing calls, 
+We realised that LFMM does not cope well with missing data, as in our tests 
+<!--(see file [LFMMvsBAYENV.xlsx](LFMM/old/LFMMvsBAYENV.xlsx))-->
+markers with missing data were two orders or magnitude more likely to be associated to climate vars. Therefore we used instead a dataset with imputed missing calls, 
 which is contained in file [*SBCC_9K_SNPs.imputed.tsv*](SBCC_9K_SNPs.imputed.tsv). 
 The following code filters out SNPs with with $MAF \geq 0.05$:
 
