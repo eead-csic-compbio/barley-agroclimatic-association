@@ -35,7 +35,7 @@ mapping and diverse protocols for association analyses:
 
 ## Downloads
 
-It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 850MB. 
+It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 814MB. 
 
 
 ## Dependencies
