@@ -161,6 +161,12 @@ manhattan <- function(x, chr="CHR", bp="BP", p="P", snp="SNP",
     def_args <- list(xaxt='n', bty='n', xaxs='i', yaxs='i', las=1, pch=20,
                      xlim=c(xmin,xmax), ylim=c(0,ceiling(max(d$logp))),
                      xlab=xlabel, ylab=expression(-log[10](italic(p))))
+    
+    # increase right margin to ensure names of annotated SNPs fit
+    if(!is.null(annotatePval) || annotateTop == TRUE) {
+      par(mai=c(0.82,0.82,0.82,1.2))
+    }
+    
     ## Next, get a list of ... arguments
     #dotargs <- as.list(match.call())[-1L]
     dotargs <- list(...)
