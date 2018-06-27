@@ -30,15 +30,12 @@ mapping and diverse protocols for association analyses:
 
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
-<!--An example of the maps that were produced is shown below:
-![**Legend.** Sample map of SNPs and agroclimatic variable](./maps/plots/BOPA2_12_10979_verna_30d.png) -->
-
-## Downloads
+**Downloads**
 
 It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 814MB. 
 
 
-## Dependencies
+**Dependencies**
 
 Besides [bayenv2](https://gcbias.org/bayenv) and a few Perl scripts, included in this repository,
 these protocols require a few R packages which must be installed to reproduce the results:
@@ -60,6 +57,5 @@ these protocols require a few R packages which must be installed to reproduce th
 [qqman](https://cran.r-project.org/package=qqman),
 [raster](https://cran.r-project.org/package=raster),
 [vegan](https://cran.r-project.org/package=vegan).
-
 
 The BayPass XtX protocol requires the system installation of [BayPass](http://www1.montpellier.inra.fr/CBGP/software/baypass).
