@@ -64,6 +64,10 @@ _spr, _aut, _win and _annual. Summer aggregates and months between July and
 October are not expected to have any influence on barley cultivars, hence they
 were excluded on further analyses.
 
+Dummy climate variables were simulated as explained in this 
+[blog post](http://santiago.begueria.es/2010/10/generating-spatially-correlated-random-fields-with-r)
+by S Beguería.
+
 ```{r readRawData}
 # read raw data (landraces SBCC138,142-5 previously excluded)
 rawdata <- read.table(file="raw/barley_climate_updated.tsv", header=TRUE, sep="\t")
