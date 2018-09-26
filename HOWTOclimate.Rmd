@@ -1,5 +1,5 @@
 ---
-title: "Preparation and selection of climate variables"
+title: "Preparation, selection and mapping of climate variables"
 output:
   html_document:
     fig_caption: yes
@@ -780,7 +780,7 @@ snps[1:10,c(1:4,ncol(snps))]
 # load climatologies (a data.frame named 'clima')
 load('./maps/climatologies_5km.RData')
 
-# load PCA climatologies (a data.frame named 'clima')
+# load PCA climatologies (a data.frame named 'pcaclima')
 load('./maps/climatologies_5km_pca.RData')
 
 # load a shape (border) of Spain (a data.frame named 'esp')
@@ -825,7 +825,6 @@ And on a dummy variable:
 snpmap(snps, 'BOPA2_12_10979', clima, 'dummy_01', esp, size=3)
 ```
 
-
 The function `snpmap` returns a ggplot object. This object can be stored, and
 then modified using standard `ggplot2` functions, for instance to override
 the default plotting options. Note that this may issue a warning:
@@ -850,4 +849,117 @@ for (i in 1:dim(clima)[3]) {
   g <- snpmap(clim=clima, climname=nam, border=esp)
   ggsave(paste('./maps/plots/',nam,'.png',sep=''), g, width=4, height=2.75, units='in')
 }
+```
+
+
+Let's now map some SNPs found to be associated to climate variables in our barley panel.
+Note than in this example you can choose to save the resulting maps in files in either PNG or PDF format:
+
+```{r mappingGEASNPs}
+
+# uncomment one of these lines according to the desired outcome
+graphtype='none' # to produce the html markdown document
+#graphtype='pdf'  # to produce pdf files
+#graphtype='png'  # to produce png files
+
+snpname = "BOPA2_12_10979"
+climvar = 'verna_mar_apr'
+outname = paste(snpname,climvar,sep="_")
+outname = gsub("\\|","-",outname)
+p1 = snpmap(snps, snpname, clima, climvar, esp, size=3)+
+  scale_fill_gradientn(colors=terrain.colors(10), name='verna_mar_apr',
+                       limits=c(30,120), na.value='#F2F2F2FF')
+p2 = snpreg(snps, snpname, clima, climvar)
+if(graphtype == "pdf"){ 
+  pdf(file=paste("maps/plots/",outname,".pdf",sep="")) 
+} else if(graphtype == "png"){ png(file=paste("maps/plots/",outname,".png",sep="")) }
+multiplot(p1, p2)
+dev.off()
+
+graphtype='pdf'
+
+snpname = "BK_23"
+climvar = "pfrost"
+outname = paste(snpname,climvar,sep="_")
+outname = gsub("\\|","-",outname)
+p1 = snpmap(snps, snpname, clima, climvar, esp, size=3) +
+  scale_fill_gradientn(colors=terrain.colors(10), name='pfrost',
+                       limits=c(0,125), na.value='#F2F2F2FF')
+p2 = snpreg(snps, snpname, clima, climvar, 'pfrost')
+if(graphtype == "pdf"){ 
+  pdf(file=paste("maps/plots/", outname, ".pdf",sep=""), width=8, height=6, useDingbats=FALSE) 
+} else if(graphtype == "png"){ png(file=paste("maps/plots/",outname,".png",sep="")) }
+multiplot(p1, p2)
+p1
+dev.off()
+
+snpname = "3255833|F|0"
+climvar = 'pcp_win'
+outname = paste(snpname,climvar,sep="_")
+outname = gsub("\\|","-",outname)
+p1 = snpmap(snps, snpname, clima, climvar, esp, size=3)+
+  scale_fill_gradientn(colors=rev(terrain.colors(10)), name='pcp_win',
+                       limits=c(45,310), na.value='#00A600FF')
+p2 = snpreg(snps, snpname, clima, climvar)
+if(graphtype == "pdf"){ 
+  pdf(file=paste("maps/plots/",outname,".pdf",sep="")) 
+} else if(graphtype == "png"){ png(file=paste("maps/plots/",outname,".png",sep="")) }
+multiplot(p1, p2)
+dev.off()
+
+snpname = "3256603|F|0"
+climvar = "bal_jun"
+outname = paste(snpname,climvar,sep="_")
+outname = gsub("\\|","-",outname)
+p1 = snpmap(snps, snpname, clima, climvar, esp, size=3) +
+  scale_fill_gradientn(colors=rev(terrain.colors(10)), name='bal_jun',
+                       limits=c(-175,15), na.value='#F2F2F2FF')
+p2 = snpreg(snps, snpname, clima, climvar)
+if(graphtype == "pdf"){ 
+  pdf(file=paste("maps/plots/",outname,".pdf",sep="")) 
+} else if(graphtype == "png"){ png(file=paste("maps/plots/",outname,".png",sep="")) }
+multiplot(p1, p2)
+dev.off()
+
+```
+
+
+
+In addition to SNPs, other variables can also be mapped. For instance, we can produce a plot of barley landraces indicating to which subpopulation cluster they belong to, as explained in
+[HOWTOstructure](./HOWTOstructure.html). In this example we choose elevation (altitude):
+
+```{r mappingStructure}
+
+graphtype='none'
+
+# add the population structure (cluster) data
+struct <- read.table(file='./raw/SBCC_Kinship.full.tsv',
+                     header=TRUE, sep='\t')
+
+snps <- merge(struct, snps, by.x='id', by.y='id')
+snps$structure_cluster <- factor(snps$structure_cluster)
+
+# map of elevation (alt) and population structure (cluster); needs some tweaking with 
+# the factor levels, because the function snpmap() expects only {A,C,G,T} levels
+library(plyr)
+snps$cluster <- revalue(snps$structure_cluster, c('1'='A', '2'='C', '3'='G', '4'='T'))
+snpname = "cluster"
+climvar = "alt"
+outname = paste(snpname,climvar,sep="_")
+outname = gsub("\\|","-",outname)
+p1 = snpmap(snps, snpname, clima, climvar, esp, size=3) +
+  scale_fill_gradientn(colors=terrain.colors(10), name='elevation',
+                       limits=c(0,1500), na.value='#F2F2F2FF') +
+  scale_color_manual(breaks=c('A','C','G','T','missing','-'),
+                     values=c('blue','yellow','red','dark green','black','black'),
+                     labels=c(1:6)) +
+  scale_shape_manual(breaks=c('A','C','G','T','missing','-'),
+                     values=c(16,16,16,16,3,3),
+                     labels=c(1:6))
+
+if(graphtype == "pdf"){ 
+  pdf(file=paste("maps/plots/", outname, ".pdf",sep=""), width=8, height=6, useDingbats=FALSE) 
+} else if(graphtype == "png"){ png(file=paste("maps/plots/",outname,".png",sep="")) }
+p1
+dev.off()
 ```
