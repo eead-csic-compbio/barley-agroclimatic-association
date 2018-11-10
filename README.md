@@ -30,6 +30,16 @@ mapping and diverse protocols for association analyses:
 
 <!--|[HOWTOmaps.md](./HOWTOmaps.md)| Iberian maps of SNPs significantly associated to climate variables, saved in [maps/plots](./maps/plots) | -->
 
+**Data files**
+
+The table below describes the main data files used in this work. 
+| filename | description |
+|:---------|:-----------:|
+|[raw/barley_climate_updated.tsv](./raw/barley_climate_updated.tsv) | Values of agro-climatic and environmental variables at the geographical collection points of the barley accessions. |
+|[raw/barley_climate_pca_scores.tsv](./raw/barley_climate_pca_scores.tsv) | Values of principal components of the agro-climatic and environmental variables at the geographical collection points of the barley accessions. |
+|[maps/climatologies_5km.RData](./maps/climatologies_5km.RData) | 5x5 km grids of agro-climatic and environmental (lat, lon, alt) variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html). |
+|[maps/climatologies_5km_pca.RData](./maps/climatologies_5km_pca.RData) | 5x5 km grids of principal components of the agro-climatic and environmental variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html)| 
+
 **Downloads**
 
 It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 814MB. 
