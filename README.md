@@ -41,6 +41,15 @@ The table below describes the main data files used in this work.
 |[maps/climatologies_5km.RData](./maps/climatologies_5km.RData) | 5x5 km grids of agro-climatic and environmental (lat, lon, alt) variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html). |
 |[maps/climatologies_5km_pca.RData](./maps/climatologies_5km_pca.RData) | 5x5 km grids of principal components of the agro-climatic and environmental variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html)| 
 
+<!-- matrices/SBCCmatrix_nr_mean.txt -->
+<!-- raw 
+9920_SNPs_SBCC_50K.tsv                 
+SBCC_Kinship.full.tsv
+9920_SNPs_SBCC_bp_map2017.curated.tsv  
+SBCC_rsq0.2_uniqcM.list
+9920_SNPs_SBCC_cM_map2017.curated.tsv  
+-->
+
 **Downloads**
 
 It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 783MB. 
