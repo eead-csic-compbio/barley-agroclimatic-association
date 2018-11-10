@@ -33,6 +33,7 @@ mapping and diverse protocols for association analyses:
 **Data files**
 
 The table below describes the main data files used in this work. 
+
 | filename | description |
 |:---------|:-----------:|
 |[raw/barley_climate_updated.tsv](./raw/barley_climate_updated.tsv) | Values of agro-climatic and environmental variables at the geographical collection points of the barley accessions. |
@@ -42,7 +43,7 @@ The table below describes the main data files used in this work.
 
 **Downloads**
 
-It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 814MB. 
+It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 783MB. 
 
 
 **Dependencies**
