@@ -32,7 +32,9 @@ mapping and diverse protocols for association analyses:
 
 **Data files**
 
-The table below describes the main data files used in this work. 
+The table below describes some data files used in this work. You can find them in the repository, 
+mainly at [maps/](./maps), [raw/](./raw/) and [raw/](./raw/) folders, if you click on 
+[View on GitHub](https://github.com/eead-csic-compbio/barley-agroclimatic-association):
 
 | filename | description |
 |:---------|:-----------:|
@@ -40,15 +42,12 @@ The table below describes the main data files used in this work.
 |[raw/barley_climate_pca_scores.tsv](./raw/barley_climate_pca_scores.tsv) | Values of principal components of the agro-climatic and environmental variables at the geographical collection points of the barley accessions. |
 |[maps/climatologies_5km.RData](./maps/climatologies_5km.RData) | 5x5 km grids of agro-climatic and environmental (lat, lon, alt) variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html). |
 |[maps/climatologies_5km_pca.RData](./maps/climatologies_5km_pca.RData) | 5x5 km grids of principal components of the agro-climatic and environmental variables over Spain, required for producing the maps in [HOWTOclimate](./HOWTOclimate.html)| 
-
-<!-- matrices/SBCCmatrix_nr_mean.txt -->
-<!-- raw 
-9920_SNPs_SBCC_50K.tsv                 
-SBCC_Kinship.full.tsv
-9920_SNPs_SBCC_bp_map2017.curated.tsv  
-SBCC_rsq0.2_uniqcM.list
-9920_SNPs_SBCC_cM_map2017.curated.tsv  
--->
+|[matrices/SBCCmatrix_nr_mean.txt](./matrices/SBCCmatrix_nr_mean.txt]) | A robust non-redundant covariance matrix obtained after averaging 10 Bayenv2 replicates. |
+|[raw/SBCC_Kinship.full.tsv](./raw/SBCC_Kinship.full.tsv) | Tab-separated file assigning SBCC landraces to 4 subpopulations. |
+|[raw/9920_SNPs_SBCC_50K.tsv](./raw/9920_SNPs_SBCC_50K.tsv) | Tab-separated matrix with SBCC biallelic SNPs. |
+|[raw/9920_SNPs_SBCC_bp_map2017.curated.tsv](./raw/9920_SNPs_SBCC_bp_map2017.curated.tsv) | Tab-separated file with physical (bp) positions of SNPs assigned by [BARLEYMAP](http://floresta.eead.csic.es/barleymap) |
+|[raw/9920_SNPs_SBCC_cM_map2017.curated.tsv](./raw/9920_SNPs_SBCC_cM_map2017.curated.tsv) | Tab-separated file with genetic (cMp) positions of SN
+Ps assigned by [BARLEYMAP](http://floresta.eead.csic.es/barleymap) |
 
 **Downloads**
 
