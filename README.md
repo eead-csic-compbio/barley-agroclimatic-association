@@ -33,7 +33,7 @@ mapping and diverse protocols for association analyses:
 **Data files**
 
 The table below describes some data files used in this work. You can find them in the repository, 
-mainly at [maps/](./maps), [raw/](./raw/) and [raw/](./raw/) folders, if you click on 
+mainly at maps/, and raw/ folders, if you click on 
 [View on GitHub](https://github.com/eead-csic-compbio/barley-agroclimatic-association):
 
 | filename | description |
