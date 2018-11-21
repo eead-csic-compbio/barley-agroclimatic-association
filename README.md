@@ -48,10 +48,10 @@ mainly at maps/, and raw/ folders, if you click on
 |[raw/9920_SNPs_SBCC_bp_map2017.curated.tsv](./raw/9920_SNPs_SBCC_bp_map2017.curated.tsv) | Tab-separated file with physical positions of SNPs assigned by [BARLEYMAP](http://floresta.eead.csic.es/barleymap) |
 |[raw/9920_SNPs_SBCC_cM_map2017.curated.tsv](./raw/9920_SNPs_SBCC_cM_map2017.curated.tsv) | Tab-separated file with genetic positions of SNPs assigned by [BARLEYMAP](http://floresta.eead.csic.es/barleymap) |
 
-**Bayenv demo **
+**Bayenv demo**
 
-A tar.gz file with a demo dataset to learn how to run bayenv2 locally is available at [bayenv/BAYENV_SAMPLE.tgz](./bayenv/BAYENV_SAMPLE.tgz).
-It can be downloaded with: $ wget 
+A demo dataset to learn how to run bayenv2 locally is available at [bayenv/BAYENV_EXAMPLE.tgz](./bayenv/BAYENV_EXAMPLE.tgz).
+It can be downloaded in the terminal with: wget https://eead-csic-compbio.github.io/barley-agroclimatic-association/bayenv/BAYENV_EXAMPLE.tgz
 
 **Downloads**
 
