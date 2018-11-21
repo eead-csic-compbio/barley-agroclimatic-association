@@ -52,9 +52,7 @@ mainly at maps/, and raw/ folders, if you click on
 
 A demo dataset to learn how to run bayenv2 locally is available at [bayenv/BAYENV_EXAMPLE.tgz](./bayenv/BAYENV_EXAMPLE.tgz).
 It can be downloaded in the terminal with: 
-```{r demoterm, eval=FALSE}
-wget https://eead-csic-compbio.github.io/barley-agroclimatic-association/bayenv/BAYENV_EXAMPLE.tgz
-```
+``wget https://eead-csic-compbio.github.io/barley-agroclimatic-association/bayenv/BAYENV_EXAMPLE.tgz``
 
 **Downloads**
 
