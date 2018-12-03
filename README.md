@@ -56,13 +56,13 @@ It can be downloaded in the terminal with:
 
 **Downloads**
 
-It is possible to get the complete dataset and source code by cloning the GitHub repository; note that it takes 783MB. 
+It is possible to get the complete dataset and source code by downloading the release (143MB) or cloning the GitHub repository (783MB). 
 
 
 **Dependencies**
 
-Besides [bayenv2](https://gcbias.org/bayenv) and a few Perl scripts, included in this repository,
-these protocols require a few R packages which must be installed to reproduce the results:
+Besides [bayenv2](https://gcbias.org/bayenv), [LFMM](http://membres-timc.imag.fr/Olivier.Francois/lfmm) and a few Perl scripts, 
+included in this repository, these protocols require a few R packages which must be installed to reproduce the results:
 
 [LDcorSV](https://cran.r-project.org/web/packages/LDcorSV/index.html),
 [ape](https://cran.r-project.org/package=ape),
