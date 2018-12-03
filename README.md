@@ -56,7 +56,9 @@ It can be downloaded in the terminal with:
 
 **Downloads**
 
-It is possible to get the complete dataset and source code by downloading the release (143MB) or cloning the GitHub repository (783MB). 
+It is possible to get the complete dataset, source code and documentation in two ways:
++ downloading the release (143MB) [![DOI](https://zenodo.org/badge/138037295.svg)](https://zenodo.org/badge/latestdoi/138037295) 
++ cloning the GitHub repository (783MB)
 
 
 **Dependencies**
