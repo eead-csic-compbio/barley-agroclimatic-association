@@ -2,7 +2,7 @@ This repository contains data files and source code used in a project in which w
 genome-wide association with high-resolution climate data of the Iberian Peninsula with the 
 goal of discovering selection footprints in the genomes of barley landraces from the
 [Spanish Barley Core Collection](http://www.eead.csic.es/barley/index.php?lng=1). 
-The results of the project are summarized here: https://onlinelibrary.wiley.com/doi/full/10.1111/mec.15009
+The results of the project are summarized at [https://doi.org/10.1111/mec.15009](https://doi.org/10.1111/mec.15009)
 
 URL: [eead-csic-compbio.github.io/barley-agroclimatic-association](https://eead-csic-compbio.github.io/barley-agroclimatic-association)
 
